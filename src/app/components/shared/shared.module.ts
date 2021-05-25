@@ -24,6 +24,16 @@ import { ReactiveFormsModule } from '@angular/forms';  //para formularios
     ReactiveFormsModule,
     MatSnackBarModule,
     MatProgressSpinnerModule
+  ],
+  exports: [
+    CommonModule,
+    MatSliderModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SharedModule { }
