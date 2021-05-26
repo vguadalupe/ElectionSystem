@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -183,10 +183,10 @@ export class UserService extends BaseService {
       rb.query('Role', params.Role, {});
       rb.query('TypeFilter', params.TypeFilter, {});
     }
-
+    rb.header("Authorization",localStorage.getItem("token")!);
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'text/json'
+      accept: 'text/json',
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {

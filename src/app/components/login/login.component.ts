@@ -42,11 +42,14 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (res) => {
           this.loginResponse = res;
-          if (this.loginResponse.status == 200) this.fakeLoading();
+          if (this.loginResponse.status == 200) {
+            localStorage.setItem("token","Bearer "+res.body.content?.token!)
+            this.fakeLoading();
+          }
         },
         (err) => {
-          this.loginResponse = err;
-          this.error(this.loginResponse.body.message!);
+    
+          this.error( err.error.message);
           this.form.reset();
         }
       );
