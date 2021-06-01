@@ -182,8 +182,13 @@ export class UserService extends BaseService {
       rb.query('LastName', params.LastName, {});
       rb.query('Role', params.Role, {});
       rb.query('TypeFilter', params.TypeFilter, {});
+      rb.query("Offset",1);
+      rb.query("OrderBy","Desc");
+      rb.query("Limit",1000);
     }
     rb.header("Authorization",localStorage.getItem("token")!);
+ 
+
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json',

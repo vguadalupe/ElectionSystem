@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent  },
+
   { path: 'dashboard', loadChildren:()=> import('./components/dashboard/dashboard.module').then(x => x.DashboardModule)},  //lazy load para dashboard y cargar mas ligero y solo lo que requiere no todo al tiempo
 
   { path: '**',redirectTo: 'login', pathMatch: 'full' }  //cambiar para pagina 404

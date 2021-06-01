@@ -12,11 +12,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from './components/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { UserRegisterComponent } from './components/user-register/user-register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,

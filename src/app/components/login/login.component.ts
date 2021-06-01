@@ -37,19 +37,21 @@ export class LoginComponent implements OnInit {
     console.log(usuario);
     console.log(password);
     this.loginRequest = { email: usuario, password: password };
+    this.loading = true;
     this._authService
       .apiAuthLoginPost$Json$Response({ body: this.loginRequest })
       .subscribe(
         (res) => {
           this.loginResponse = res;
           if (this.loginResponse.status == 200) {
-            localStorage.setItem("token","Bearer "+res.body.content?.token!)
-            this.fakeLoading();
+            localStorage.setItem('token', 'Bearer ' + res.body.content?.token!);
+            this.loading = false;
+            this.router.navigate(['dashboard']);
           }
         },
         (err) => {
-    
-          this.error( err.error.message);
+          this.loading = false;
+          this.error(err.error.message);
           this.form.reset();
         }
       );
@@ -64,12 +66,8 @@ export class LoginComponent implements OnInit {
   }
 
   fakeLoading() {
-    this.loading = true;
     setTimeout(() => {
-      this.router.navigate(['dashboard']);
-
       //redireccion al dashboard
-
       // this.loading=false;
     }, 1500);
   }

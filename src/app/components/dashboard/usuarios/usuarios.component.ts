@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
+
 import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from 'src/api/services';
 import { Usuario } from 'src/app/interfaces/usuario';
@@ -31,6 +32,8 @@ export class UsuariosComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  _loading: boolean = true;
+
   constructor(
     private _usuarioService: UsuarioService,
     private _userService: UserService,
@@ -53,10 +56,13 @@ export class UsuariosComponent implements OnInit {
               usuario: u.userName,
             });
             this.dataSource = new MatTableDataSource(this.listUsuarios);
+            this._loading = false;
           });
         }
       },
-      (err) => {}
+      (err) => {
+        this._loading = false;
+      }
     );
   }
 
